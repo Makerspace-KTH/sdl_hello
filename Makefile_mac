@@ -1,34 +1,35 @@
 # Makefile for Mac
 
-# Location of where hello.c is stored in
+## Location of where hello.c is stored in
 SRCDIR=./src
 
-# Name of the compiler, GNU GCC in this case
+## Name of the compiler, GNU GCC in this case
 CC=gcc
 
-# Any include directories
+## Any include directories
 INCLUDE = /opt/homebrew/include
 
-# Any flags for the compiler
+## Any flags for the compiler
 CFLAGS = -g -I$(INCLUDE) -c
 #CFLAGS = -g -c
 
-# Any libraries to link with
+## Any libraries to link with
 LIBS = /opt/homebrew/lib
 
 ## FOR SDL 2
 ## Extra flags to give to compilers when they are supposed to invoke the linker
-# LDFLAGS = -lSDL2main -lSDL2
+#LDFLAGS = -lSDL2main -lSDL2
 
 ## FOR SDL3
 ## Extra flags to give to compilers when they are supposed to invoke the linker
 ## Note: No -lSDL3main flag needed for SDL3, it is included in -lSDL3 as a header (see hello.c file).
 LDFLAGS = -lSDL3
 
+## Build the correct hello source file according to your SDL version:
 hello:
 	@echo "Building Hello"
+#	$(CC) $(CFLAGS) $(SRCDIR)/hello_sdl2.c -o $@.o
 	$(CC) $(CFLAGS) $(SRCDIR)/hello_sdl3.c -o $@.o 
-#	$(CC) $(CFLAGS) $(SRCDIR)/hello.c -o $@.o #SDL2 # UNCOMMENT TO USE SDL2
 	$(CC) hello.o -o hello $(LDFLAGS) -L $(LIBS)
 
 clean:

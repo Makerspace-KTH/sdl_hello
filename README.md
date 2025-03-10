@@ -1,14 +1,18 @@
-# Getting started to program with SDL2 in C
+# Getting started to program with SDL in C
 
-- [Getting started to program with SDL2 in C](#getting-started-to-program-with-sdl2-in-c)
+- [Getting started to program with SDL in C](#getting-started-to-program-with-sdl-in-c)
   - [Installing SDL2 Libraries](#installing-sdl2-libraries)
-    - [Ubuntu Linux](#ubuntu-linux)
+    - [SDL2 on Ubuntu Linux](#sdl2-on-ubuntu-linux)
     - [SDL2 on Macos](#sdl2-on-macos)
     - [SDL2 on Windows](#sdl2-on-windows)
-  - [Running the hello program](#running-the-hello-program)
+  - [Installing SDL3 Libraries](#installing-sdl3-libraries)
+    - [SDL3 on Ubuntu Linux](#sdl3-on-ubuntu-linux)
+    - [SDL3 on Macos](#sdl3-on-macos)
+    - [SDL3 on Windows](#sdl3-on-windows)
+  - [Running the sdl hello program](#running-the-sdl-hello-program)
   - [Bonus](#bonus)
 
-This is a simple tutorial to install and run a simple program which uses the _Simple Direct Media Library version 2 or SDL2_ in a C program.
+This is a simple tutorial to install and run a simple program which uses the _Simple Direct Media Library (SDL)_ in a C program.
 
 This tutorial assumes that you have installed and are familiar with running a C program as shown in the tutorial [here](https://github.com/Makerspace-KTH/c_programing_intro)
 
@@ -18,11 +22,38 @@ To summarize, the tutorial assumes that:
 2. You have installed GNU C compiler (GCC) using the method described in the tutorial for your operating system. 
 3. You are able able to successfully compile the a program using make.
 
-A program with SDL libraries will not only require you to include and call the functions in the SDL2 library but also to provide the runtime libraries during the _linking_ process. The following sections describe how to install a SDL library and to tell the compiler to use it and link your program against it, to create the executable that can be run on your machine.
+A program with SDL libraries will not only require you to include and call the functions in the SDL library but also to provide the runtime libraries during the _linking_ process. The following sections describe how to install a SDL library (2 or 3) and to tell the compiler to use it and link your program against it, to create the executable that can be run on your machine.
+
+## Installing SDL2 Libraries
+SDL contains various libraries based on what type of functions are called. For example, the _SDL2\_mixer_ library contains functions to manage sound when creating games, while _SDL2\_ttf_ library helps in creating fonts. The libraries are separated based on their functions but also to ensure that only the required parts of the libraries are used for building the executable. The size of the library will have a influence on the size of the executable cerated.
+
+### SDL2 on Ubuntu Linux
+
+On Ubuntu linux, use the following command in the terminal to install the required libraries:
+
+    $ sudo apt install -y libsdl2-2.0-0 libsdl2-image-2.0-0 libsdl2-mixer-2.0-0 libsdl2-ttf-2.0-0 libsdl2-net-2.0-0 libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsdl2-net-dev libsdl2-mixer-dev
+  
+### SDL2 on Macos
+
+On mac with _homebrew_ installed please use the following command in terminal to install the libraries:
+
+    $ brew install sdl2 sdl2_mixer sdl2_image sdl2_ttf sdl2_net
+
+
+### SDL2 on Windows
+
+On widows with Msys2, please open the msys2 console and issue the following commands to install the SDL2 libraries.
+
+    $ pacman -S mingw64/mingw-w64-x86_64-SDL2 mingw64/mingw-w64-x86_64-SDL2_image mingw64/mingw-w64-x86_64-SDL2_ttf mingw64/mingw-w64-x86_64-SDL2_mixer mingw64/mingw-w64-x86_64-SDL2_net
+
+Answer _Y_ to proceed with the installation.
 
 
 ## Installing SDL3 Libraries
-SDL3 contains various libraries based on what type of functions are called. For example, the _SDL2\_mixer_ library contains functions to manage sound when creating games, while _SDL2\_ttf_ library helps in creating fonts. The libraries are separated based on their functions but also to ensure that only the required parts of the libraries are used for building the executable. The size of the library will have a influence on the size of the executable cerated.
+SDL contains various libraries based on what type of functions are called. For example, the _SDL2\_mixer_ library contains functions to manage sound when creating games, while _SDL2\_ttf_ library helps in creating fonts. The libraries are separated based on their functions but also to ensure that only the required parts of the libraries are used for building the executable. The size of the library will have a influence on the size of the executable cerated.
+
+IMPORTANT  
+SDL3 is a very new release. As a result, for Ubuntu Linux all will be built from source, and for Windows and Mac libraries like SDL_mixer and SDL_net need to be built from source.
 
 ### SDL3 on Ubuntu Linux
 
@@ -65,22 +96,24 @@ This will install _sdl3_ into the standard library on your distribution.
 
 ### SDL3 on Macos
 
-On mac with _homebrew_ installed please use the following command in terminal to install the libraries:
+On mac with _homebrew_ installed please use the below command in terminal to install the libraries. Other libraries like SDL3_mixer and SDL3_net need to be built from source.
 
-    $ brew install sdl3 sdl2_mixer sdl3_image sdl3_ttf sdl2_net
+    $ brew install sdl3 sdl3_image sdl3_ttf
 
 
 ### SDL3 on Windows
 
-On widows with Msys2, please open the msys2 console and issue the following commands to install the SDL2 libraries.
+On windows with Msys2, please open the msys2 console and issue the below commands to install the libraries. Other libraries like SDL3_mixer and SDL3_net need to be built from source.
 
-    $ pacman -S mingw64/mingw-w64-x86_64-SDL3 mingw64/mingw-w64-x86_64-SDL3-image mingw64/mingw-w64-x86_64-SDL3-ttf mingw64/mingw-w64-x86_64-SDL2_mixer mingw64/mingw-w64-x86_64-SDL2_net
+    $ pacman -S mingw64/mingw-w64-x86_64-SDL3 mingw64/mingw-w64-x86_64-SDL3-image mingw64/mingw-w64-x86_64-SDL3-ttf
 
 Answer _Y_ to proceed with the installation.
 
-## Running the hello program
+## Running the sdl hello program
 
-In order to run the program using Makefile, rename the right makefile for you system. For example, on a Windows computer, rename _Makefile\_win_ to _Makefile_. 
+In order to run the hello program using Makefile, rename the right makefile for you system. For example, on a Windows computer, rename _Makefile\_win_ to _Makefile_. 
+
+Ensure the Makefile have the correct active lines of code for your version of SDL (2 or 3). 
 
 Open a terminal and point the working directory to the project folder. Refer to the [_c\_programming\_intro_](https://github.com/Makerspace-KTH/c_programing_intro#4-launch-and-run-a-c-program) for details for your operating system.
 
