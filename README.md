@@ -109,6 +109,26 @@ On windows with Msys2, please open the msys2 console and issue the below command
 
 Answer _Y_ to proceed with the installation.
 
+#### SDL3 libraries from source on Windows
+
+Download the zip-file for the SDL library via the green 'code' button on GitHub. For example, you'll find the latest release for SDL_net here: https://github.com/libsdl-org/SDL_net.
+
+Extract the zip-file and place it somewhere accessible, like in the msys64/home/user directory.
+
+Open the msys2 console and install cmake.
+
+    $ pacman -S mingw-w64-x86_64-cmake
+
+With the msys2 console, navigate _into_ the newly added SDL directory.
+
+Run below commands to build.
+
+    $ cmake -S . -B . -DCMAKE_INSTALL_PREFIX=/mingw64
+    $ cmake --build . --config Release
+    $ cmake --install . --prefix /mingw64
+
+Now, you should hopefully be able to include and link the new library in the same way as your pacman installed SDL packages.
+
 ## Running the sdl hello program
 
 In order to run the hello program using Makefile, rename the right makefile for you system. For example, on a Windows computer, rename _Makefile\_win_ to _Makefile_. 
