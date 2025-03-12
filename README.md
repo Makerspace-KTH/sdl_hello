@@ -100,6 +100,31 @@ On mac with _homebrew_ installed please use the below command in terminal to ins
 
     $ brew install sdl3 sdl3_image sdl3_ttf
 
+#### SDL3 libraries from source on Macos
+
+Download the zip-file for the SDL library via the green 'code' button on GitHub. For example, you'll find the latest release for SDL_net here: https://github.com/libsdl-org/SDL_net.
+
+Extract the zip-file.
+
+Open your terminal and with _homebrew_ install cmake:
+
+    $ brew install cmake
+
+In your terminal, navigate _into_ the newly downloaded SDL directory.
+
+Run below commands to build (note that you have to choose between arm64 and x86_64):
+
+    $ cmake -S . -B build \
+    -DCMAKE_INSTALL_PREFIX=/opt/homebrew \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_NAME_DIR=/opt/homebrew/lib \
+    -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"
+
+    $ cmake --build build
+
+    $ cmake --install build
+
+Now, you should hopefully be able to include and link the new library in the same way as your directly installed SDL packages.
 
 ### SDL3 on Windows
 
