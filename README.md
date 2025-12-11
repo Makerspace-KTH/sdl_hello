@@ -53,7 +53,7 @@ Answer _Y_ to proceed with the installation.
 SDL contains various libraries based on what type of functions are called. For example, the _SDL2\_mixer_ library contains functions to manage sound when creating games, while _SDL2\_ttf_ library helps in creating fonts. The libraries are separated based on their functions but also to ensure that only the required parts of the libraries are used for building the executable. The size of the library will have a influence on the size of the executable cerated.
 
 IMPORTANT  
-SDL3 is a very new release. As a result, for Ubuntu Linux all will be built from source, and for Windows and Mac libraries like SDL_mixer and SDL_net need to be built from source.
+SDL3 is a very new release. As a result, all will be built from source.
 
 ### SDL3 on Ubuntu Linux
 
@@ -94,13 +94,7 @@ sudo make install
 ```
 This will install _sdl3_ into the standard library on your distribution.
 
-### SDL3 on Macos
-
-On mac with _homebrew_ installed please use the below command in terminal to install the libraries. Other libraries like SDL3_mixer and SDL3_net need to be built from source.
-
-    $ brew install sdl3 sdl3_image sdl3_ttf
-
-#### SDL3 libraries from source on Macos
+### SDL3 libraries from source on Macos
 
 Download the zip-file for the SDL library via the green 'code' button on GitHub. For example, you'll find the latest release for SDL_net here: https://github.com/libsdl-org/SDL_net.
 
@@ -124,17 +118,9 @@ Run below commands to build (note that you have to choose between arm64 and x86_
 
     $ cmake --install build
 
-Now, you should hopefully be able to include and link the new library in the same way as your directly installed SDL packages.
+Now, you should hopefully be able to include and link the new library in the same way as directly installed SDL packages.
 
-### SDL3 on Windows
-
-On windows with Msys2, please open the msys2 console and issue the below commands to install the libraries. Other libraries like SDL3_mixer and SDL3_net need to be built from source.
-
-    $ pacman -S mingw64/mingw-w64-x86_64-SDL3 mingw64/mingw-w64-x86_64-SDL3-image mingw64/mingw-w64-x86_64-SDL3-ttf
-
-Answer _Y_ to proceed with the installation.
-
-#### SDL3 libraries from source on Windows
+### SDL3 libraries from source on Windows
 
 Download the zip-file for the SDL library via the green 'code' button on GitHub. For example, you'll find the latest release for SDL_net here: https://github.com/libsdl-org/SDL_net.
 
